@@ -17,7 +17,7 @@ synth: result.json
 config.sv: ../config.sv
 
 result.json: ${LOCAL_SOURCES}
-	${YOSYS} -p "hierarchy; proc; memory -nomap; dff2dffe; wreduce -memx; opt -full" -o $@ ${LOCAL_SOURCES}
+	${YOSYS} -p "hierarchy; proc; memory -nomap; opt_dff; wreduce -memx; opt -full" -o $@ ${LOCAL_SOURCES}
 
 clean:
 	rm *.vh config.sv
