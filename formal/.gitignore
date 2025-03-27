@@ -1,0 +1,10 @@
+*.sv
+
+!common/adder.sv
+!singlecycle/singlecycle_datapath.sv
+!formal_config.sv
+
+output/
+
+!common/
+!singlecycle/
