@@ -29,6 +29,9 @@ int main(int argc, const char **argv, const char **env)
             top->reset = 1;
         top->clock = time & 1;
         top->eval();
+
+        if (time == 10) break;
+
         if (verbose && top->clock && time > 8) {
             std::cout << std::hex << std::setfill('0')
                       << "pc=" << std::setw(8) << top->pc << " "

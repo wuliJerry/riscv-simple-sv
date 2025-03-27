@@ -58,7 +58,9 @@ module singlecycle_datapath (
     assign data_mem_write_data  = rs2_data;
     
     adder #(
-        .WIDTH(32)
+        .WIDTH(32),
+        .DEBUG_ENABLE(1),
+        .DEBUG_NAME("pc_plus_4")
     ) adder_pc_plus_4 (
         .operand_a      (32'h00000004),
         .operand_b      (pc),
@@ -66,7 +68,9 @@ module singlecycle_datapath (
     );
     
     adder #(
-       .WIDTH(32)
+       .WIDTH(32),
+       .DEBUG_ENABLE(1),
+       .DEBUG_NAME("pc_plus_imm")
     ) adder_pc_plus_immediate (
         .operand_a      (pc),
         .operand_b      (immediate),
