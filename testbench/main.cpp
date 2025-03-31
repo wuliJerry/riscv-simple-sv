@@ -30,7 +30,7 @@ int main(int argc, const char **argv, const char **env)
         top->clock = time & 1;
         top->eval();
 
-        if (time == 10) break;
+        if (time == 100) return 0;
 
         if (verbose && top->clock && time > 8) {
             std::cout << std::hex << std::setfill('0')

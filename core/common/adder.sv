@@ -21,8 +21,8 @@ module adder #(
     generate
         if (DEBUG_ENABLE) begin
             always @* begin
-                $display("ADDER %s: Time=%0t, operand_a=0x%h, operand_b=0x%h, result=0x%h", 
-                         DEBUG_NAME, $time, operand_a, operand_b, result);
+                $display("ADDER %s: operand_a=0x%b, operand_b=0x%b", 
+                         DEBUG_NAME, operand_a, operand_b);
             end
         end
     endgenerate
