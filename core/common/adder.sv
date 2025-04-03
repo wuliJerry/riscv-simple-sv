@@ -18,14 +18,14 @@ module adder #(
 
     assign result = operand_a + operand_b;
 
-    generate
-        if (DEBUG_ENABLE) begin
-            always @* begin
-                $display("ADDER %s: operand_a=0x%b, operand_b=0x%b", 
-                         DEBUG_NAME, operand_a, operand_b);
-            end
-        end
-    endgenerate
+    //  generate
+    //      if (DEBUG_ENABLE) begin
+    //          always @* begin
+    //              $display("ADDER %s: operand_a=0x%b, operand_b=0x%b", 
+    //                       DEBUG_NAME, operand_a, operand_b);
+    //          end
+    //      end
+    //  endgenerate
 
 endmodule
 

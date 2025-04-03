@@ -43,26 +43,29 @@ module alu (
             `ALU_MULHU: result = unsigned_multiplication[63:32];
             `ALU_DIV:
                 if (operand_b == `ZERO)
-                    result = 32'b1;
-                else if ((operand_a == 32'h80000000) && (operand_b == 32'b1))
-                    result = 32'h80000000;
+                    result = 32'hffffffff;  // Division by zero, return all ones (-1)
+                else if ((operand_a == 32'h80000000) && (operand_b == 32'hffffffff))
+                    result = 32'h80000000;  // Special case: MIN_INT / -1, return MIN_INT (overflow)
                 else
                     result = operand_a / operand_b;
+                
             `ALU_DIVU:
                 if (operand_b == `ZERO)
-                    result = 32'b1;
+                    result = 32'hffffffff;  // Division by zero, return all ones (MAX_UINT)
                 else
                     result = $unsigned(operand_a) / $unsigned(operand_b);
+                
             `ALU_REM:
                 if (operand_b == `ZERO)
-                    result = operand_a;
-                else if ((operand_a == 32'h80000000) && (operand_b == 32'b1))
-                    result = `ZERO;
+                    result = operand_a;  // Remainder of division by zero is the dividend
+                else if ((operand_a == 32'h80000000) && (operand_b == 32'hffffffff))
+                    result = `ZERO;  // Special case: MIN_INT % -1 = 0
                 else
                     result = operand_a % operand_b;
+                
             `ALU_REMU:
                 if (operand_b == `ZERO)
-                    result = operand_a;
+                    result = operand_a;  // Remainder of division by zero is the dividend
                 else
                     result = $unsigned(operand_a) % $unsigned(operand_b);
     `endif
@@ -75,7 +78,7 @@ module alu (
         always_comb begin
             signed_multiplication   = operand_a * operand_b;
             unsigned_multiplication = $unsigned(operand_a) * $unsigned(operand_b);
-            signed_unsigned_multiplication = $signed(operand_a) * $unsigned(operand_b);
+            signed_unsigned_multiplication = 64'($signed(operand_a)) * 64'($unsigned(operand_b));
         end
     `endif
 

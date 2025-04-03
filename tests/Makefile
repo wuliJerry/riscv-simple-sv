@@ -3,7 +3,7 @@ CC=riscv64-unknown-elf-gcc
 LD=riscv64-unknown-elf-ld
 SREC_CAT=srec_cat
 OBJCOPY=riscv64-unknown-elf-objcopy
-CFLAGS=-mabi=ilp32 -march=rv32i
+CFLAGS=-mabi=ilp32 -march=rv32im
 LDFLAGS=-Tlink.ld -melf32lriscv
 SRCS=$(wildcard *.S)
 OBJS=$(SRCS:.S=.o)

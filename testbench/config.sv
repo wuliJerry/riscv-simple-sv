@@ -7,7 +7,7 @@
 `define RV_CONFIG
 
 // Select ISA extensions
-// `define M_MODULE    // multiplication and division
+`define M_MODULE    // multiplication and division
 
 //////////////////////////////////////////
 //              Memory config           //
